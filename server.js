@@ -40,7 +40,12 @@ app.use((err,req,res,next)=>{
 
 const MongodbConnect = async ()=>{
     try{
-       await mongoose.connect(process.env.MONGO);
+       await mongoose.connect(process.env.MONGO,{
+        useNewUrlParser:true,
+        useCreateIndex: true,
+        useUnifiedTopology:true,
+        useFindAndModify:false
+       });
        console.log("Connected to mongodb")
     }catch(err){
         console.log(err)
